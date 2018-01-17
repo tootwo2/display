@@ -97,7 +97,7 @@ function Image(imageName) {
   var top = 0;
   var left = 0;
   var domImage = "";
-  var imgSrc = `/img/${imageName}`;
+  var imgSrc = `./img/${imageName}`;
 }
 
 Image.prototype.draw = function() {
@@ -109,7 +109,7 @@ function drawImage(imageTmpArr){
     var str='';
     for(var i in imageTmpArr){
         var leftTmp = 20*i;
-        str += '<img src=\"/img/'+imageTmpArr[i]+'\" name=\"'+imageTmpArr[i].substring(0,imageTmpArr[i].indexOf(".png"))+'\" id=\"'+imageTmpArr[i].substring(0,imageTmpArr[i].indexOf(".png"))+'\" style=\"width: 150px;height: 75px;left:'+leftTmp+'px\" class=\"cdft\"/>';
+        str += '<img src=\"./img/'+imageTmpArr[i]+'\" name=\"'+imageTmpArr[i].substring(0,imageTmpArr[i].indexOf(".png"))+'\" id=\"'+imageTmpArr[i].substring(0,imageTmpArr[i].indexOf(".png"))+'\" style=\"width: 150px;height: 75px;left:'+leftTmp+'px\" class=\"cdft\"/>';
     }
 
     $('.right-rec').append(str);
