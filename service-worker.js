@@ -1,4 +1,4 @@
-var version = 'v2';
+var version = 'v1';
 
 self.addEventListener('install', function(event) {
   var cacheWhitelist = [version];
@@ -6,7 +6,6 @@ self.addEventListener('install', function(event) {
   event.waitUntil(
     caches.open(version).then(function(cache) {
       return cache.addAll([
-        '/display/',
         '/display/index.html',
         '/display/index.js',
         '/display/js/jquery.min.js',
@@ -20,13 +19,6 @@ self.addEventListener('install', function(event) {
         '/display/css/bootstrap-table.min.css',
         '/display/css/bootstrapValidator.min.css',
         '/display/css/nkimagemove.css',
-        '/display/img/333824-021.png',
-        '/display/img/898466-011.png',
-        '/display/img/903896-001.png',
-        '/display/img/904695-003.png',
-        '/display/img/904695-005.png',
-        '/display/fonts/glyphicons-halflings-regular.woff2',
-        '/display/img/background1.jpg'
       ]);
     })
   );
@@ -51,20 +43,22 @@ self.addEventListener('activate', function(event) {
 
 self.addEventListener('fetch', function(evt) {
   console.log('The service worker is serving the asset.');
-  evt.respondWith(fromNetwork(evt.request, 400).catch(function () {
+  evt.respondWith(fromNetwork(evt.request, 400, evt).catch(function () {
     return fromCache(evt.request);
   }));
 });
 
 
-function fromNetwork(request, timeout) {
+function fromNetwork(request, timeout, event) {
   return new Promise(function (fulfill, reject) {
     // Reject in case of timeout.
     var timeoutId = setTimeout(reject, timeout);
     // Fulfill in case of success.
     fetch(request).then(function (response) {
       clearTimeout(timeoutId);
+      var res = response.clone();
       fulfill(response);
+      event.waitUntil(update(request,res));
     // Reject also if network fetch rejects.
     }, reject);
   });
@@ -75,5 +69,11 @@ function fromCache(request) {
     return cache.match(request).then(function (matching) {
       return matching || Promise.reject('no-match');
     });
+  });
+}
+
+function update(request, response) {
+  return caches.open(version).then(function (cache) {
+    return cache.put(request, response);
   });
 }

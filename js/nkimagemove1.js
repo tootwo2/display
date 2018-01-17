@@ -93,6 +93,10 @@ var data =
   }
 ];
 
+$(function(){
+  init();
+})
+
 function Image(imageName) {
   var top = 0;
   var left = 0;
@@ -115,238 +119,238 @@ function drawImage(imageTmpArr){
     $('.right-rec').append(str);
 }
 
-$(function () {
-    WINDOW_WIDTH = document.documentElement.clientWidth;
-    WINDOW_HEIGHT = document.documentElement.clientHeight;
+function init() {
+  WINDOW_WIDTH = document.documentElement.clientWidth;
+  WINDOW_HEIGHT = document.documentElement.clientHeight;
 //    console.log(WINDOW_WIDTH);
 //    console.log(WINDOW_HEIGHT);
-    $('#table').bootstrapTable({
-        toggle:"table",
-        pagination:true,
-        pageSize: 5,      //每页的记录行数（*）
-        sidePagination:"client",
-        singleSelect:false,
-        clickToSelect:true,
-        toolbar:'#toolbar',
-        columns: [
-            {field: 'id',checkbox:true},
-            {field: 'productCode',valign:'center',align:'center',title: '货号',width:99},
-            {field: 'ordermeetingCode',valign:'center',align:'center',title: '订货会',hidden:true},
-            {field: 'imageInfo',width:70,valign:'left',title: '图片',formatter:function (value,row,index) {if(value==null||value=='') return '-';return "<img width=\'50px\' height=\'40px\' src=\'./img/"+value+"\' >";}},
-            {field: 'productCateName',valign:'center',align:'center',title: '大类'},
-            {field: 'productSeriesName',valign:'center',align:'center',title: '系列'},
-            {field: 'productGenderName',valign:'center',align:'center',title: '性别'}
-        ]
-    }).bootstrapTable('load',data);;
-    $('#form1').bootstrapValidator({
-        message: 'This value is not valid',
-        feedbackIcons: {
-            valid: 'glyphicon glyphicon-ok',
-            invalid: 'glyphicon glyphicon-remove',
-            validating: 'glyphicon glyphicon-refresh'
-        },
-        fields: {
-            ordermeetingCode: {
-                message: '订货会编号验证失败',
-                validators: {
-                    notEmpty: {
-                        message: '订货会编号不能为空'
-                    }
-                }
-            }
-        },
-        submitHandler: function (validator, form, submitButton) {
-            var ordermeetingCode = $('#ordermeetingCode').val();
-            var productCode = $('#productCode').val();
-            var productCateCode = $('#productCateCode').val();
-            var productSeriesCode = $('#productSeriesCode').val();
-            var productGenderCode = $('#productGenderCode').val();
-            if(ordermeetingCode==''||ordermeetingCode==null||ordermeetingCode=='undefined'){
-                $('#alert1').modal('show');
-            }
-            // $.ajax({
-            //     data:{"ordermeetingCode":ordermeetingCode,"productCode":productCode,"productCateCode":productCateCode,"productSeriesCode":productSeriesCode,
-            //         "productGenderCode":productGenderCode},
-            //     type:"POST",
-            //     url:'http://192.168.11.147:8981/ordermeeting/baseProImgs/data.json',
-            //     dataType:"json",
-            //     success:function(result){
-            //         $('#table').bootstrapTable('load',result);
-            //     }
-            // })
-        }
-    });
+  $('#table').bootstrapTable({
+      toggle:"table",
+      pagination:true,
+      pageSize: 5,      //每页的记录行数（*）
+      sidePagination:"client",
+      singleSelect:false,
+      clickToSelect:true,
+      toolbar:'#toolbar',
+      columns: [
+          {field: 'id',checkbox:true},
+          {field: 'productCode',valign:'center',align:'center',title: '货号',width:99},
+          {field: 'ordermeetingCode',valign:'center',align:'center',title: '订货会',hidden:true},
+          {field: 'imageInfo',width:70,valign:'left',title: '图片',formatter:function (value,row,index) {if(value==null||value=='') return '-';return "<img width=\'50px\' height=\'40px\' src=\'./img/"+value+"\' >";}},
+          {field: 'productCateName',valign:'center',align:'center',title: '大类'},
+          {field: 'productSeriesName',valign:'center',align:'center',title: '系列'},
+          {field: 'productGenderName',valign:'center',align:'center',title: '性别'}
+      ]
+  }).bootstrapTable('load',data);;
+  $('#form1').bootstrapValidator({
+      message: 'This value is not valid',
+      feedbackIcons: {
+          valid: 'glyphicon glyphicon-ok',
+          invalid: 'glyphicon glyphicon-remove',
+          validating: 'glyphicon glyphicon-refresh'
+      },
+      fields: {
+          ordermeetingCode: {
+              message: '订货会编号验证失败',
+              validators: {
+                  notEmpty: {
+                      message: '订货会编号不能为空'
+                  }
+              }
+          }
+      },
+      submitHandler: function (validator, form, submitButton) {
+          var ordermeetingCode = $('#ordermeetingCode').val();
+          var productCode = $('#productCode').val();
+          var productCateCode = $('#productCateCode').val();
+          var productSeriesCode = $('#productSeriesCode').val();
+          var productGenderCode = $('#productGenderCode').val();
+          if(ordermeetingCode==''||ordermeetingCode==null||ordermeetingCode=='undefined'){
+              $('#alert1').modal('show');
+          }
+          // $.ajax({
+          //     data:{"ordermeetingCode":ordermeetingCode,"productCode":productCode,"productCateCode":productCateCode,"productSeriesCode":productSeriesCode,
+          //         "productGenderCode":productGenderCode},
+          //     type:"POST",
+          //     url:'http://192.168.11.147:8981/ordermeeting/baseProImgs/data.json',
+          //     dataType:"json",
+          //     success:function(result){
+          //         $('#table').bootstrapTable('load',result);
+          //     }
+          // })
+      }
+  });
 
-    $('#btn_move').on("click", onClickBtnMove);
-    $('#confirmCut').on("click",onClickBtnConfirmCut);
-    $('#blockBefore').on("click",onClickBtnBlockBefore);
-    $('#confirmShowBefore').on("click",onClickConfirmShowBefore);
-    $('#newBlock').on("click",newBlock);
+  $('#btn_move').on("click", onClickBtnMove);
+  $('#confirmCut').on("click",onClickBtnConfirmCut);
+  $('#blockBefore').on("click",onClickBtnBlockBefore);
+  $('#confirmShowBefore').on("click",onClickConfirmShowBefore);
+  $('#newBlock').on("click",newBlock);
 
-    var supportTouches = ("createTouch" in document);
-    var startEvent = supportTouches?"touchstart":"mousedown";
-    var moveEvent = supportTouches?"touchmove":"mousemove";
-    var endEvent = supportTouches?"touchend":"";
+  var supportTouches = ("createTouch" in document);
+  var startEvent = supportTouches?"touchstart":"mousedown";
+  var moveEvent = supportTouches?"touchmove":"mousemove";
+  var endEvent = supportTouches?"touchend":"";
 
-    $('.right-rec').on(startEvent, 'img', touch);
-    $('.right-rec').on(moveEvent, 'img', touch);
-    $('.right-rec').on(endEvent, 'img', touch);
+  $('.right-rec').on(startEvent, 'img', touch);
+  $('.right-rec').on(moveEvent, 'img', touch);
+  $('.right-rec').on(endEvent, 'img', touch);
 
-    lastSelected = null;//选中的图片
-    dPoint = null;//鼠标
-    dImage = null;//选中的图片
-    isDrag = null;//移动图片动作
-    chrPosX = false;
-    chrPosY = false;
-    ow = null;//图片width
-    oh = null;//图片height
-    ox = null;//图片left
-    oy = null;//图片top
-    span = 10;
-    state = null;
-    function touch(event){
-        var event = event||window.event;
-        switch (event.type){
-            case "touchstart":
-                preventDefault(event);
-                if(lastSelected!=null){
-                    lastSelected.style.border = "hidden";
-                }
-                event.target.style.border = "solid 1px lightskyblue";
-                lastSelected = event.originalEvent.changedTouches[0].target;
-                //相对于图片的位置
-                dPoint = event.originalEvent.changedTouches[0];
-                dImage = event.originalEvent.changedTouches[0].target;
-                break;
-            case "mousedown":
-                state = "mousedown";
-                console.log("mousedown");
-                preventDefault(event);
-                if(lastSelected!=null){
-                    lastSelected.style.border = "hidden";
-                }
-                event.target.style.border = "solid 1px lightskyblue";
-                lastSelected = event.target;
-                //相对于图片的位置
-                dPoint = event;
-                dImage = event.target;
-                ox=dImage.style.left;
-                oy=dImage.style.top;
-                oh=dImage.offsetHeight;//获取对象相对于版面或由父坐标 offsetParent 属性指定的父坐标的高度
-                ow=dImage.offsetWidth;
+  lastSelected = null;//选中的图片
+  dPoint = null;//鼠标
+  dImage = null;//选中的图片
+  isDrag = null;//移动图片动作
+  chrPosX = false;
+  chrPosY = false;
+  ow = null;//图片width
+  oh = null;//图片height
+  ox = null;//图片left
+  oy = null;//图片top
+  span = 10;
+  state = null;
+  function touch(event){
+      var event = event||window.event;
+      switch (event.type){
+          case "touchstart":
+              preventDefault(event);
+              if(lastSelected!=null){
+                  lastSelected.style.border = "hidden";
+              }
+              event.target.style.border = "solid 1px lightskyblue";
+              lastSelected = event.originalEvent.changedTouches[0].target;
+              //相对于图片的位置
+              dPoint = event.originalEvent.changedTouches[0];
+              dImage = event.originalEvent.changedTouches[0].target;
+              break;
+          case "mousedown":
+              state = "mousedown";
+              console.log("mousedown");
+              preventDefault(event);
+              if(lastSelected!=null){
+                  lastSelected.style.border = "hidden";
+              }
+              event.target.style.border = "solid 1px lightskyblue";
+              lastSelected = event.target;
+              //相对于图片的位置
+              dPoint = event;
+              dImage = event.target;
+              ox=dImage.style.left;
+              oy=dImage.style.top;
+              oh=dImage.offsetHeight;//获取对象相对于版面或由父坐标 offsetParent 属性指定的父坐标的高度
+              ow=dImage.offsetWidth;
 
-                if(dImage.className=='cdft'){
-                    isDrag=true;
-                }else{
-                    isDrag=false;
-                }
-                document.onmousemove=mouseDownAndMove;
-                break;
-            case "mousemove":
-                if(lastSelected!=null&&isDrag==null){
-                    console.log("mousemove");
+              if(dImage.className=='cdft'){
+                  isDrag=true;
+              }else{
+                  isDrag=false;
+              }
+              document.onmousemove=mouseDownAndMove;
+              break;
+          case "mousemove":
+              if(lastSelected!=null&&isDrag==null){
+                  console.log("mousemove");
 
-                    var x=event.offsetX||event.layerX,y=event.offsetY||event.layerY,imgW=lastSelected.offsetWidth,imgH=lastSelected.offsetHeight;
-                    if((x<=span&&y<=span)||(x>=imgW-span&&y>=imgH-span))lastSelected.className='cnwr';
-                    else if((x<=span&&y>=imgH-span)||(y<=span&&x>=imgW-span))lastSelected.className='cner';
-                    else if(x<=span||x>=imgW-span)lastSelected.className='chr';
-                    else if(y<=span||y>=imgH-span)lastSelected.className='cvr';
-                    else lastSelected.className='cdft';
-                }
-                break;
-            case "touchmove":
-                if(dPoint==null){
-                    break;
-                }
-                //不能超出右侧div和下侧div
-                if(parseFloat(dImage.style.width)+parseFloat(getPositionRelyBrowser($('#'+dImage.id+'')[0]).left)>=WINDOW_WIDTH+20){
-                    break;
-                }
-                if(parseFloat(dImage.style.height)+parseFloat(getPositionRelyBrowser($('#'+dImage.id+'')[0]).top)>=WINDOW_HEIGHT+20){
-                    break;
-                }
-                var balancex = event.originalEvent.changedTouches[0].clientX-dPoint.clientX;
-                var balancey = event.originalEvent.changedTouches[0].clientY-dPoint.clientY;
-                var tmpy = 0;
-                var tmpx = 0;
-                if($('#'+dImage.id+'')[0].style.top==''||typeof($('#'+dImage.id+'')[0].style.top)=="undefined"){
-                    tmpy = Number(balancey)+parseFloat(eval($('#'+dImage.id+'')).position().top);
-                    tmpx = Number(balancex)+parseFloat(eval($('#'+dImage.id+'')).position().left);
-                }else{
-                    tmpy = Number(balancey)+parseFloat($('#'+dImage.id+'')[0].style.top);
-                    tmpx = Number(balancex)+parseFloat($('#'+dImage.id+'')[0].style.left);
-                }
-                $('#'+dImage.id+'')[0].style.top = tmpy+"px";
-                $('#'+dImage.id+'')[0].style.left = tmpx+"px";
-                dPoint = event.originalEvent.changedTouches[0];
-                break;
-            case "touchend":
-                if(deleteTest(event.target)){
-                    $('#'+dImage.id+'')[0].remove();
-                }
-                if($('#'+dImage.id+'').length>0){
-                    var rightRecWidth = $('.right-rec')[0].style.width|| $('.right-rec')[0].clientWidth || $('.right-rec')[0].offsetWidth || $('.right-rec')[0].scrollWidth;
-                    var rightRecHeight = $('.right-rec')[0].style.height|| $('.right-rec')[0].clientHeight || $('.right-rec')[0].offsetHeight || $('.right-rec')[0].screenTop;
-                    if(parseFloat(dImage.style.width)+parseFloat(getPositionRelyBrowser($('#'+dImage.id+'')[0]).left)>=WINDOW_WIDTH+20){
-                        dImage.style.left = rightRecWidth-parseFloat(dImage.style.width)+$('.right-rec')[0].offsetLeft+'px';
-                    }
-                    if(parseFloat(dImage.style.height)+parseFloat(getPositionRelyBrowser($('#'+dImage.id+'')[0]).top)>=WINDOW_HEIGHT+20){
-                        dImage.style.top = rightRecHeight-parseFloat(dImage.style.height)+'px';
-                    }
-                    if(parseFloat(getPositionRelyBrowser($('.right-rec')[0]).left)>parseFloat(getPositionRelyBrowser($('#'+dImage.id+'')[0]).left)){
-                        dImage.style.left = 0+'px';
-                    }
-                    if(parseFloat(getPositionRelyBrowser($('#'+dImage.id+'')[0]).top)<0){
-                        dImage.style.top = 0+'px';
-                    }
-                }
-                dPoint = null;
-                dImage = null;
-                break;
-        }
-    }
-    preventDefault=function(ev){
-        if(ev){
-            ev.preventDefault();
-        }else {
-            window.event.returnValue = false;
-        }
-    }
+                  var x=event.offsetX||event.layerX,y=event.offsetY||event.layerY,imgW=lastSelected.offsetWidth,imgH=lastSelected.offsetHeight;
+                  if((x<=span&&y<=span)||(x>=imgW-span&&y>=imgH-span))lastSelected.className='cnwr';
+                  else if((x<=span&&y>=imgH-span)||(y<=span&&x>=imgW-span))lastSelected.className='cner';
+                  else if(x<=span||x>=imgW-span)lastSelected.className='chr';
+                  else if(y<=span||y>=imgH-span)lastSelected.className='cvr';
+                  else lastSelected.className='cdft';
+              }
+              break;
+          case "touchmove":
+              if(dPoint==null){
+                  break;
+              }
+              //不能超出右侧div和下侧div
+              if(parseFloat(dImage.style.width)+parseFloat(getPositionRelyBrowser($('#'+dImage.id+'')[0]).left)>=WINDOW_WIDTH+20){
+                  break;
+              }
+              if(parseFloat(dImage.style.height)+parseFloat(getPositionRelyBrowser($('#'+dImage.id+'')[0]).top)>=WINDOW_HEIGHT+20){
+                  break;
+              }
+              var balancex = event.originalEvent.changedTouches[0].clientX-dPoint.clientX;
+              var balancey = event.originalEvent.changedTouches[0].clientY-dPoint.clientY;
+              var tmpy = 0;
+              var tmpx = 0;
+              if($('#'+dImage.id+'')[0].style.top==''||typeof($('#'+dImage.id+'')[0].style.top)=="undefined"){
+                  tmpy = Number(balancey)+parseFloat(eval($('#'+dImage.id+'')).position().top);
+                  tmpx = Number(balancex)+parseFloat(eval($('#'+dImage.id+'')).position().left);
+              }else{
+                  tmpy = Number(balancey)+parseFloat($('#'+dImage.id+'')[0].style.top);
+                  tmpx = Number(balancex)+parseFloat($('#'+dImage.id+'')[0].style.left);
+              }
+              $('#'+dImage.id+'')[0].style.top = tmpy+"px";
+              $('#'+dImage.id+'')[0].style.left = tmpx+"px";
+              dPoint = event.originalEvent.changedTouches[0];
+              break;
+          case "touchend":
+              if(deleteTest(event.target)){
+                  $('#'+dImage.id+'')[0].remove();
+              }
+              if($('#'+dImage.id+'').length>0){
+                  var rightRecWidth = $('.right-rec')[0].style.width|| $('.right-rec')[0].clientWidth || $('.right-rec')[0].offsetWidth || $('.right-rec')[0].scrollWidth;
+                  var rightRecHeight = $('.right-rec')[0].style.height|| $('.right-rec')[0].clientHeight || $('.right-rec')[0].offsetHeight || $('.right-rec')[0].screenTop;
+                  if(parseFloat(dImage.style.width)+parseFloat(getPositionRelyBrowser($('#'+dImage.id+'')[0]).left)>=WINDOW_WIDTH+20){
+                      dImage.style.left = rightRecWidth-parseFloat(dImage.style.width)+$('.right-rec')[0].offsetLeft+'px';
+                  }
+                  if(parseFloat(dImage.style.height)+parseFloat(getPositionRelyBrowser($('#'+dImage.id+'')[0]).top)>=WINDOW_HEIGHT+20){
+                      dImage.style.top = rightRecHeight-parseFloat(dImage.style.height)+'px';
+                  }
+                  if(parseFloat(getPositionRelyBrowser($('.right-rec')[0]).left)>parseFloat(getPositionRelyBrowser($('#'+dImage.id+'')[0]).left)){
+                      dImage.style.left = 0+'px';
+                  }
+                  if(parseFloat(getPositionRelyBrowser($('#'+dImage.id+'')[0]).top)<0){
+                      dImage.style.top = 0+'px';
+                  }
+              }
+              dPoint = null;
+              dImage = null;
+              break;
+      }
+  }
+  preventDefault=function(ev){
+      if(ev){
+          ev.preventDefault();
+      }else {
+          window.event.returnValue = false;
+      }
+  }
 
-    $('.right-rec').mouseup(function () {
-        state=null;
-        console.log("mouseup");
-        if(dImage==null){
-            return;
-        }
-        if(deleteTest(dImage)){
-            $('#'+dImage.id+'')[0].remove();
-        }
-        if($('#'+dImage.id+'').length>0){
-            var rightRecWidth = $('.right-rec')[0].style.width|| $('.right-rec')[0].clientWidth || $('.right-rec')[0].offsetWidth || $('.right-rec')[0].scrollWidth;
-            var rightRecHeight = $('.right-rec')[0].style.height|| $('.right-rec')[0].clientHeight || $('.right-rec')[0].offsetHeight || $('.right-rec')[0].screenTop;
-            if(parseFloat(dImage.style.width)+parseFloat(getPositionRelyBrowser($('#'+dImage.id+'')[0]).left)>=WINDOW_WIDTH+20){
-                dImage.style.left = rightRecWidth-parseFloat(dImage.style.width)+$('.right-rec')[0].offsetLeft+'px';
-            }
-            if(parseFloat(dImage.style.height)+parseFloat(getPositionRelyBrowser($('#'+dImage.id+'')[0]).top)>=WINDOW_HEIGHT+20){
-                dImage.style.top = rightRecHeight-parseFloat(dImage.style.height)+'px';
-            }
-            if(parseFloat(getPositionRelyBrowser($('.right-rec')[0]).left)>parseFloat(getPositionRelyBrowser($('#'+dImage.id+'')[0]).left)){
-                dImage.style.left = 0+'px';
-            }
-            if(parseFloat(getPositionRelyBrowser($('#'+dImage.id+'')[0]).top)<0){
-                dImage.style.top = 0+'px';
-            }
-        }
+  $('.right-rec').mouseup(function () {
+      state=null;
+      console.log("mouseup");
+      if(dImage==null){
+          return;
+      }
+      if(deleteTest(dImage)){
+          $('#'+dImage.id+'')[0].remove();
+      }
+      if($('#'+dImage.id+'').length>0){
+          var rightRecWidth = $('.right-rec')[0].style.width|| $('.right-rec')[0].clientWidth || $('.right-rec')[0].offsetWidth || $('.right-rec')[0].scrollWidth;
+          var rightRecHeight = $('.right-rec')[0].style.height|| $('.right-rec')[0].clientHeight || $('.right-rec')[0].offsetHeight || $('.right-rec')[0].screenTop;
+          if(parseFloat(dImage.style.width)+parseFloat(getPositionRelyBrowser($('#'+dImage.id+'')[0]).left)>=WINDOW_WIDTH+20){
+              dImage.style.left = rightRecWidth-parseFloat(dImage.style.width)+$('.right-rec')[0].offsetLeft+'px';
+          }
+          if(parseFloat(dImage.style.height)+parseFloat(getPositionRelyBrowser($('#'+dImage.id+'')[0]).top)>=WINDOW_HEIGHT+20){
+              dImage.style.top = rightRecHeight-parseFloat(dImage.style.height)+'px';
+          }
+          if(parseFloat(getPositionRelyBrowser($('.right-rec')[0]).left)>parseFloat(getPositionRelyBrowser($('#'+dImage.id+'')[0]).left)){
+              dImage.style.left = 0+'px';
+          }
+          if(parseFloat(getPositionRelyBrowser($('#'+dImage.id+'')[0]).top)<0){
+              dImage.style.top = 0+'px';
+          }
+      }
 
-        dImage.className='cdft';
-        document.onmousemove=null;
-        dPoint = null;
-        dImage = null;
+      dImage.className='cdft';
+      document.onmousemove=null;
+      dPoint = null;
+      dImage = null;
 
-        isDrag=null;
-    });
-});
+      isDrag=null;
+  });
+}
 
 function mouseDownAndMove(event) {
     if(state==null){
