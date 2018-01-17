@@ -8,6 +8,7 @@ self.addEventListener('install', function(event) {
       return cache.addAll([
         '/display/',
         '/display/index.html',
+        '/display/index.js',
         '/display/js/jquery.min.js',
         '/display/js/bootstrap.min.js',
         '/display/js/bootstrap-table.min.js',
@@ -24,7 +25,8 @@ self.addEventListener('install', function(event) {
         '/display/img/903896-001.png',
         '/display/img/904695-003.png',
         '/display/img/904695-005.png',
-        '/display/fonts/glyphicons-halflings-regular.woff2'
+        '/display/fonts/glyphicons-halflings-regular.woff2',
+        '/display/img/background1.jpg'
       ]);
     })
   );
