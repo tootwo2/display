@@ -1,0 +1,53 @@
+/*只有从html。。。层层都是height:100%，才能把里层元素100%高显示，有无其他方法？absolute？*/
+html,body,.container-fluid,.row,.left-rec,.right-rec,.col-lg-5,.col-lg-7,.col-sm-7,.col-xs-7,.col-sm-5,.col-xs-5{
+    height: 100%;
+}
+body{
+    /*background-color: darkseagreen;*/
+    /*background-color: burlywood;*/
+    /*background-color: blanchedalmond;*/
+    /*background-color: cornsilk;*/
+}
+.left-rec,.right-rec{
+    min-height: 100%;
+    padding: 10px 0px;
+    /*border: solid 3px;*/
+}
+/*.right-rec{*/
+/*!*background-color: cornsilk;*!*/
+/*background-color: #E6CEAC;*/
+/*}*/
+/*.left-rec{*/
+/*background-color: #E6CEAC;*/
+/*}*/
+/*.col-lg-5,.col-sm-5,.col-xs-5{*/
+/*background-color: cornsilk;*/
+/*}*/
+.col-lg-7,.col-sm-7,.col-xs-7{
+    background-image: url("../img/background1.jpg");
+    background-size: 100% 100%;
+}
+.form-group{
+    text-align: center;
+}
+.panel{
+    margin-top: 10px;
+}
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
+    line-height: 3;
+}
+img{
+    position: absolute;
+}
+.pagination-detail{
+    display: none;
+}
+/*.right-rec img{*/
+/*cursor: move;*/
+/*}*/
+.chr{cursor:e-resize;}
+.cvr{cursor:s-resize;}
+.cner{cursor:ne-resize;}
+.cnwr{cursor:nw-resize;}
+.cdft{cursor:default;}
+.cmove{cursor:move;}
